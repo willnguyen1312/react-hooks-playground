@@ -1,9 +1,8 @@
+import "jest-dom/extend-expect";
 import React from "react";
 import ReactDOM from "react-dom";
-import { cleanup, fireEvent, getByTestId, render } from "react-testing-library";
+import { fireEvent, render } from "react-testing-library";
 import App from ".";
-
-afterEach(cleanup);
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
@@ -12,16 +11,16 @@ it("renders without crashing", () => {
 });
 
 it("App loads with initial state of 0", () => {
-  const { container } = render(<App />);
-  const countValue = getByTestId(container, "countvalue");
+  const { getByTestId } = render(<App />);
+  const countValue = getByTestId("countvalue");
   expect(countValue.textContent).toBe("0");
 });
 
 it("Increment and decrement buttons work", () => {
-  const { container } = render(<App />);
-  const countValue = getByTestId(container, "countvalue");
-  const increment = getByTestId(container, "incrementButton");
-  const decrement = getByTestId(container, "decrementButton");
+  const { getByTestId } = render(<App />);
+  const countValue = getByTestId("countvalue");
+  const increment = getByTestId("incrementButton");
+  const decrement = getByTestId("decrementButton");
 
   expect(countValue.textContent).toBe("0");
 
@@ -32,18 +31,18 @@ it("Increment and decrement buttons work", () => {
 });
 
 it("Submitting a name via the input field changes the name state value", () => {
-  const { container, rerender } = render(<App />);
+  const { getByTestId, rerender } = render(<App />);
   expect(window.localStorage.getItem("name")).toBe("Brian");
-  const nameValue = getByTestId(container, "namevalue");
-  const inputName = getByTestId(container, "inputName");
+  const nameValue = getByTestId("namevalue");
+  const inputName = getByTestId("inputName");
 
-  const submitButton = getByTestId(container, "submitRefButton");
+  const submitButton = getByTestId("submitRefButton");
   const newName = "Ben";
 
   fireEvent.change(inputName, { target: { value: newName } });
   fireEvent.click(submitButton);
+  expect(submitButton).toHaveAttribute("type", "button");
   expect(nameValue.textContent).toEqual(newName);
 
-  rerender(<App />);
   expect(window.localStorage.getItem("name")).toBe(newName);
 });
