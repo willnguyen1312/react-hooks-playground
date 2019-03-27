@@ -6,6 +6,7 @@ const UseEffect = React.lazy(() => import("./screens/useEffect"));
 const UseContext = React.lazy(() => import("./screens/useContext"));
 const UseCallBack = React.lazy(() => import("./screens/useCallback"));
 const UseMemo = React.lazy(() => import("./screens/useMemo"));
+const UseRef = React.lazy(() => import("./screens/useRef"));
 const UseReducer = React.lazy(() => import("./screens/useReducer"));
 
 const NotFound = React.lazy(() => import("./screens/notFound"));
@@ -20,7 +21,7 @@ const App = () => {
           <Link to="/useContext">UseContext</Link>{" "}
           <Link to="/useReducer">UseReducer</Link>{" "}
           <Link to="/useCallback">UseCallBack</Link>{" "}
-          <Link to="/useMemo">UseMemo</Link>{" "}
+          <Link to="/useMemo">UseMemo</Link> <Link to="/useRef">UseRef</Link>{" "}
         </nav>
 
         <Router>
@@ -30,6 +31,7 @@ const App = () => {
           <UseReducer path="/useReducer" />
           <UseCallBack path="/useCallback" />
           <UseMemo path="/useMemo" />
+          <UseRef path="/useRef" />
 
           <NotFound default />
         </Router>
