@@ -4,6 +4,7 @@ import React, { Suspense } from "react";
 const UseState = React.lazy(() => import("./screens/useState"));
 const UseEffect = React.lazy(() => import("./screens/useEffect"));
 const UseContext = React.lazy(() => import("./screens/useContext"));
+const UseCallBack = React.lazy(() => import("./screens/useCallback"));
 const UseReducer = React.lazy(() => import("./screens/useReducer"));
 
 const NotFound = React.lazy(() => import("./screens/notFound"));
@@ -17,6 +18,7 @@ const App = () => {
           <Link to="/useEffect">useEffect</Link>{" "}
           <Link to="/useContext">UseContext</Link>{" "}
           <Link to="/useReducer">UseReducer</Link>{" "}
+          <Link to="/useCallback">UseCallBack</Link>{" "}
         </nav>
 
         <Router>
@@ -24,6 +26,7 @@ const App = () => {
           <UseEffect path="/useEffect" />
           <UseContext path="/useContext" />
           <UseReducer path="/useReducer" />
+          <UseCallBack path="/useCallback" />
 
           <NotFound default />
         </Router>
