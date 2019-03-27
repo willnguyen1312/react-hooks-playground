@@ -1,27 +1,29 @@
-import { Link, RouteComponentProps, Router } from "@reach/router";
-import React from "react";
-import UseContext from "./screens/useContext";
-import UseEffect from "./screens/useEffect";
-import UseState from "./screens/useState";
+import { Link, Router } from "@reach/router";
+import React, { Suspense } from "react";
 
-const NotFound = (_: RouteComponentProps) => <div>Sorry, nothing found.</div>;
+const UseState = React.lazy(() => import("./screens/useState"));
+const UseEffect = React.lazy(() => import("./screens/useEffect"));
+const UseContext = React.lazy(() => import("./screens/useContext"));
+const NotFound = React.lazy(() => import("./screens/notFound"));
 
 const App = () => {
   return (
     <>
-      <nav>
-        <Link to="/useState">useState</Link>{" "}
-        <Link to="/useEffect">useEffect</Link>{" "}
-        <Link to="/useContext">UseContext</Link>{" "}
-      </nav>
+      <Suspense fallback={<div>Loading...</div>}>
+        <nav>
+          <Link to="/useState">useState</Link>{" "}
+          <Link to="/useEffect">useEffect</Link>{" "}
+          <Link to="/useContext">UseContext</Link>{" "}
+        </nav>
 
-      <Router>
-        <UseState path="/useState" />
-        <UseEffect path="/useEffect" />
-        <UseContext path="/useContext" />
+        <Router>
+          <UseState path="/useState" />
+          <UseEffect path="/useEffect" />
+          <UseContext path="/useContext" />
 
-        <NotFound default />
-      </Router>
+          <NotFound default />
+        </Router>
+      </Suspense>
     </>
   );
 };
