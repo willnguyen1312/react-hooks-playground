@@ -16,7 +16,7 @@ function Counter() {
   return (
     <div>
       <button onClick={decrease}>-</button>
-      <span>{count}</span>
+      <span data-testid="count">{count}</span>
       <button onClick={increase}>+</button>
     </div>
   );
