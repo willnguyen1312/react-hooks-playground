@@ -1,11 +1,15 @@
-version: 2.1
-orbs:
-  # "cypress-io/cypress@1" installs the latest published
-  # version "1.x.y" of the orb. We recommend you then use
-  # the strict explicit version "cypress-io/cypress@1.x.y"
-  # to lock the version and prevent unexpected CI changes
-  cypress: cypress-io/cypress@1
-workflows:
+version: 2
+jobs:
   build:
-    jobs:
-      - cypress/run # "run" job comes from "cypress" orb
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache: # special step to restore the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Setup Dependencies
+          command: yarn
+      - run:
+          name: Testing
+          command: yarn test
