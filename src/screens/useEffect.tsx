@@ -24,10 +24,14 @@ function UseEffect(_: RouteComponentProps) {
 
   return (
     <>
-      <input value={query} onChange={e => setQuery(e.target.value)} />
+      <input
+        data-testid="input"
+        value={query}
+        onChange={e => setQuery(e.target.value)}
+      />
       <ul>
         {data.hits.map((item: any) => (
-          <li key={item.objectID}>
+          <li data-testid="content" key={item.objectID}>
             <a href={item.url}>{item.title}</a>
           </li>
         ))}
