@@ -10,6 +10,7 @@ const UseRef = React.lazy(() => import("./screens/useRef"));
 const UseReducer = React.lazy(() => import("./screens/useReducer"));
 const UseComboInput = React.lazy(() => import("./screens/useComboInput"));
 const UseComboForm = React.lazy(() => import("./screens/useComboForm"));
+const UseReachRoute = React.lazy(() => import("./screens/useReachRoute"));
 
 const NotFound = React.lazy(() => import("./screens/notFound"));
 
@@ -18,26 +19,29 @@ const App = () => {
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <nav>
-          <Link to="/useState">useState</Link>{" "}
-          <Link to="/useEffect">useEffect</Link>{" "}
-          <Link to="/useContext">UseContext</Link>{" "}
-          <Link to="/useReducer">UseReducer</Link>{" "}
-          <Link to="/useCallback">UseCallBack</Link>{" "}
-          <Link to="/useMemo">UseMemo</Link> <Link to="/useRef">UseRef</Link>{" "}
-          <Link to="/useComboInput">UseComboInput</Link>{" "}
-          <Link to="/useComboForm">UseComboForm</Link>{" "}
+          <Link to="useState">useState</Link>{" "}
+          <Link to="useEffect">useEffect</Link>{" "}
+          <Link to="useContext">UseContext</Link>{" "}
+          <Link to="useReducer">UseReducer</Link>{" "}
+          <Link to="useCallback">UseCallBack</Link>{" "}
+          <Link to="useMemo">UseMemo</Link> <Link to="/useRef">UseRef</Link>{" "}
+          <Link to="useComboInput">UseComboInput</Link>{" "}
+          <Link to="useComboForm">UseComboForm</Link>{" "}
+          <Link to="useReachRoute">UseReachRoute</Link>{" "}
         </nav>
 
         <Router>
-          <UseState path="/useState" />
-          <UseEffect path="/useEffect" />
-          <UseContext path="/useContext" />
-          <UseReducer path="/useReducer" />
+          <UseState path="useState" />
+          <UseEffect path="useEffect" />
+          <UseContext path="useContext" />
+          <UseReducer path="useReducer" />
           <UseCallBack path="/useCallback" />
-          <UseMemo path="/useMemo" />
-          <UseRef path="/useRef" />
-          <UseComboInput path="/useComboInput" />
-          <UseComboForm path="/useComboForm" />
+          <UseMemo path="useMemo" />
+          <UseRef path="useRef" />
+          <UseComboInput path="useComboInput" />
+          <UseComboForm path="useComboForm" />
+          <UseReachRoute path="useReachRoute/:takada" />
+          <UseReachRoute path="useReachRoute" />
 
           <NotFound default />
         </Router>
